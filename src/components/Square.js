@@ -5,8 +5,7 @@ import "../styles/square.css"
 const square = (props) => {
   return (
     <button className="square" onClick={props.clicked}>
-     {/* {props.value}  value will be null, x or o*/}
-      i'm a square
+      {props.value}
     </button>
   )
 }

@@ -4,19 +4,54 @@ import Square from "../components/Square"
 
 class Board extends Component {
   state = {
-    boxes: new Array(9).fill(null), //array with three arrays corresponding to each board line
-    xNext: true, //check the next player
+    boxes: new Array(3).fill([" ", " ", " "]), //array with three arrays corresponding to each board line
+    currentPlayer: "x", //check the next player
   }
 
   handleClick = () => {
-    //check if all boxes are completed
-    //check if winning is true
+    this.setState({
+      // boxes: "3",
+      currentPlayer: this.state.currentPlayer === "x" ? "o" : "x",
+    })
   }
 
   render() {
+    //rendering each line
+    const line1 = this.state.boxes.map((e, index) => {
+      console.log(e)
+      return (
+        <Square
+          clicked={this.handleClick}
+          value={this.state.boxes[0][index]}
+          key={index}
+        />
+      )
+    })
+
+    const line2 = this.state.boxes.map((e, index) => {
+      // console.log(e, index)
+      return (
+        <Square
+          clicked={this.handleClick}
+          value={this.state.boxes[1][index]}
+          key={index}
+        />
+      )
+    })
+    const line3 = this.state.boxes.map((l, index) => {
+      return (
+        <Square
+          clicked={this.handleClick}
+          value={this.state.boxes[2][index]}
+          key={index}
+        />
+      )
+    })
     return (
       <div>
-        <Square clicked={this.handleClick} />
+        <div>{line1}</div>
+        <div>{line2}</div>
+        <div>{line3}</div>
       </div>
     )
   }
