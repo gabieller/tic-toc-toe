@@ -8,20 +8,29 @@ class Board extends Component {
     currentPlayer: "x", //check the next player
   }
 
-  handleClick = () => {
+  changePlayerHandler = (index) => {
+    let newBoxes = {
+      ...this.state.boxes,
+    }
+
+    // const adding = newBoxes.splice(2, 0, 'x');
+
+    // newBoxes[index] = this.state.currentPlayer
+    newBoxes[index] = this.state.currentPlayer
+    console.log(index)
     this.setState({
-      // boxes: "3",
       currentPlayer: this.state.currentPlayer === "x" ? "o" : "x",
+      // boxes: newBoxes
     })
   }
 
   render() {
     //rendering each line
     const line1 = this.state.boxes.map((e, index) => {
-      console.log(e)
+      // console.log(e)
       return (
         <Square
-          clicked={this.handleClick}
+          clicked={this.changePlayerHandler}
           value={this.state.boxes[0][index]}
           key={index}
         />
@@ -32,7 +41,7 @@ class Board extends Component {
       // console.log(e, index)
       return (
         <Square
-          clicked={this.handleClick}
+          clicked={this.changePlayerHandler}
           value={this.state.boxes[1][index]}
           key={index}
         />
@@ -41,7 +50,7 @@ class Board extends Component {
     const line3 = this.state.boxes.map((l, index) => {
       return (
         <Square
-          clicked={this.handleClick}
+          clicked={this.changePlayerHandler}
           value={this.state.boxes[2][index]}
           key={index}
         />
