@@ -15,8 +15,8 @@ class Board extends Component {
 
     // const adding = newBoxes.splice(2, 0, 'x');
 
+    newBoxes[0][1] = this.state.currentPlayer
     // newBoxes[index] = this.state.currentPlayer
-    newBoxes[index] = this.state.currentPlayer
     console.log(index)
     this.setState({
       currentPlayer: this.state.currentPlayer === "x" ? "o" : "x",
