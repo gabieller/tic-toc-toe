@@ -4,55 +4,61 @@ import Square from "../components/Square"
 
 class Board extends Component {
   state = {
-    boxes: new Array(3).fill([" ", " ", " "]), //array with three arrays corresponding to each board line
+    boxes: [
+      [" ", " ", " "],
+      [" ", " ", " "],
+      [" ", " ", " "],
+    ], //array with three arrays corresponding to each board line
     currentPlayer: "x", //check the next player
   }
 
-  changePlayerHandler = (index) => {
-    let newBoxes = {
-      ...this.state.boxes,
-    }
-
-    // const adding = newBoxes.splice(2, 0, 'x');
-
-    newBoxes[0][1] = this.state.currentPlayer
-    // newBoxes[index] = this.state.currentPlayer
-    console.log(index)
+  changePlayerHandler = (i, j) => {
+    let newBoxes = [
+      [...this.state.boxes[0]],
+      [...this.state.boxes[1]],
+      [...this.state.boxes[2]],
+    ]
+    newBoxes[i][j] = this.state.currentPlayer
+    console.log(newBoxes)
     this.setState({
       currentPlayer: this.state.currentPlayer === "x" ? "o" : "x",
-      // boxes: newBoxes
+      boxes: newBoxes,
     })
   }
 
   render() {
     //rendering each line
-    const line1 = this.state.boxes.map((e, index) => {
-      // console.log(e)
+    const line1 = this.state.boxes.map((e, j) => {
       return (
         <Square
           clicked={this.changePlayerHandler}
-          value={this.state.boxes[0][index]}
-          key={index}
+          boxes={this.state.boxes}
+          key={j}
+          i={0}
+          j={j}
         />
       )
     })
 
-    const line2 = this.state.boxes.map((e, index) => {
-      // console.log(e, index)
+    const line2 = this.state.boxes.map((e, j) => {
       return (
         <Square
           clicked={this.changePlayerHandler}
-          value={this.state.boxes[1][index]}
-          key={index}
+          boxes={this.state.boxes}
+          key={j}
+          i={1}
+          j={j}
         />
       )
     })
-    const line3 = this.state.boxes.map((l, index) => {
+    const line3 = this.state.boxes.map((l, j) => {
       return (
         <Square
           clicked={this.changePlayerHandler}
-          value={this.state.boxes[2][index]}
-          key={index}
+          boxes={this.state.boxes}
+          key={j}
+          i={2}
+          j={j}
         />
       )
     })
