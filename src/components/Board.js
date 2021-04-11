@@ -9,29 +9,33 @@ class Board extends Component {
       [" ", " ", " "],
       [" ", " ", " "],
     ], //array with three arrays corresponding to each board line
-    currentPlayer: "x", //check the next player
+    currentPlayer: "X", //check the next player
   }
 
-  changePlayerHandler = (i, j) => {
+  handleClick = (i, j) => {
     let newBoxes = [
       [...this.state.boxes[0]],
       [...this.state.boxes[1]],
       [...this.state.boxes[2]],
     ]
     newBoxes[i][j] = this.state.currentPlayer
-    console.log(newBoxes)
+    // console.log(newBoxes)
     this.setState({
-      currentPlayer: this.state.currentPlayer === "x" ? "o" : "x",
+      currentPlayer: this.state.currentPlayer === "X" ? "O" : "X",
       boxes: newBoxes,
     })
   }
+
+  checkWinner = (i,j) => {
+    console.log(i)
+    }
 
   render() {
     //rendering each line
     const line1 = this.state.boxes.map((e, j) => {
       return (
         <Square
-          clicked={this.changePlayerHandler}
+          clicked={this.handleClick}
           boxes={this.state.boxes}
           key={j}
           i={0}
@@ -43,7 +47,7 @@ class Board extends Component {
     const line2 = this.state.boxes.map((e, j) => {
       return (
         <Square
-          clicked={this.changePlayerHandler}
+          clicked={this.handleClick}
           boxes={this.state.boxes}
           key={j}
           i={1}
@@ -54,7 +58,7 @@ class Board extends Component {
     const line3 = this.state.boxes.map((l, j) => {
       return (
         <Square
-          clicked={this.changePlayerHandler}
+          clicked={this.handleClick}
           boxes={this.state.boxes}
           key={j}
           i={2}
@@ -63,10 +67,16 @@ class Board extends Component {
       )
     })
     return (
-      <div>
-        <div>{line1}</div>
-        <div>{line2}</div>
-        <div>{line3}</div>
+      <div boxes={this.state.boxes}>
+        <h1 className="font-semibold text-black">TIC TAC TOE</h1>
+        <div className="">
+          <div>{line1}</div>
+          <div>{line2}</div>
+          <div>{line3}</div>
+        </div>
+        <div className="pt-5 font-bold">
+          The current player is: {this.state.currentPlayer}
+        </div>
       </div>
     )
   }

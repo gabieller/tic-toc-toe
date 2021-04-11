@@ -7,7 +7,7 @@ const square = (props) => {
   console.log(props.boxes[props.i][props.j])
   return (
     <button
-      className="square"
+      className="btn bg-blue-500 square border-solid border-4 "
       onClick={() => props.clicked(props.i, props.j)}
       boxes
     >
