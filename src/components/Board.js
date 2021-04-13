@@ -8,27 +8,35 @@ class Board extends Component {
       [" ", " ", " "],
       [" ", " ", " "],
       [" ", " ", " "],
-    ], //array with three arrays corresponding to each board line
-    currentPlayer: "X", //check the next player
+    ],
+    currentPlayer: "X",
+    disable: false,
   }
 
-  handleClick = (i, j) => {
+  handleClick = (i, j, value) => {
     let newBoxes = [
       [...this.state.boxes[0]],
       [...this.state.boxes[1]],
       [...this.state.boxes[2]],
     ]
     newBoxes[i][j] = this.state.currentPlayer
-    // console.log(newBoxes)
+
+    // const mergedArray = newBoxes[0].concat(newBoxes[1], newBoxes[2])
+    // console.log(mergedArray)
+
     this.setState({
       currentPlayer: this.state.currentPlayer === "X" ? "O" : "X",
       boxes: newBoxes,
+      disable: true,
     })
   }
 
-  checkWinner = (i,j) => {
-    console.log(i)
-    }
+  // checkValue = (value) => {
+  //   console.log(value)
+  //   this.setState({
+  //     disable: true,
+  //   })
+  // }
 
   render() {
     //rendering each line
@@ -40,6 +48,10 @@ class Board extends Component {
           key={j}
           i={0}
           j={j}
+          value={this.state.boxes[0][j]}
+          disable={this.state.disable}
+          // onClick={this.checkValue}
+          // disable={this.props.value === " "  ? this.state.disable : !this.state.disable}
         />
       )
     })
@@ -52,6 +64,7 @@ class Board extends Component {
           key={j}
           i={1}
           j={j}
+          disable={this.state.disable}
         />
       )
     })
@@ -63,6 +76,7 @@ class Board extends Component {
           key={j}
           i={2}
           j={j}
+          disable={this.state.disable}
         />
       )
     })
