@@ -91,6 +91,7 @@ class Board extends Component {
         <div className="pt-5 font-bold">
           The current player is: {this.state.currentPlayer}
         </div>
+        <button>Restart</button>
       </div>
     )
   }
