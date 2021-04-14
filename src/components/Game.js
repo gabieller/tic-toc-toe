@@ -6,6 +6,7 @@ const Game = (props) => {
   return (
     <div>
       <Board  />
+      
     </div>
   )
 }
